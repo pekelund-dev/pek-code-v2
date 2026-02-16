@@ -15,10 +15,11 @@ this.chatClient = chatClient;
 
 @ShellMethod(key = { "agent", "code" }, value = "Run the coding agent prompt")
 public String agent(String prompt) {
-return this.chatClient.prompt()
-.user(prompt)
-.tools("executeCommand", "readFile", "writeFile")
-.call()
-.content();
-}
+		return this.chatClient.prompt()
+				.user(prompt)
+				.tools(AgentConfiguration.EXECUTE_COMMAND_TOOL, AgentConfiguration.READ_FILE_TOOL,
+						AgentConfiguration.WRITE_FILE_TOOL)
+				.call()
+				.content();
+	}
 }
